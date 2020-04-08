@@ -85,18 +85,36 @@ const presidents = [
 
 //Challenge Questions
 //1) Filter all presidents, leaving only the Democratic ones
+
 const dems = presidents.filter( president => president.party === "D");
 
 //2) Filter all presidents to leave only one term Republican presidents HINT use If statement
-const reps = presidents.filter( president => president.terms === 1 && president.party === "R");
-// I didn't know how to use an if statement with the filter
+// const reps = presidents.filter( president => president.terms === 1 && president.party === "R");
+// // I didn't know how to use an if statement with the filter
+
+const oneTermReps = presidents.filter(function (pres) {
+  if (pres.terms === 1 && pres.party === "R") {
+    return true;
+  }
+} );
 
 //3) Return only the last three presidents
-const last = presidents.slice(9);
+// const last = presidents.slice(9);
+
+const three = presidents.reverse().slice(presidents.length - 3);
 
 //4) Log all dems who served 2 terms. HINT use chain filter, filter and slice
-const coolDems = presidents.filter( president => president.party === "D" && president.terms === 2);
-console.log(coolDems);
+// const coolDems = presidents.filter( president => president.party === "D" && president.terms === 2);
+// console.log(coolDems);
 // I didn't know when slice would be necessary here ?
 
+const twoTermDems = presidents
+  .filter((president) => president.party === "D")
+  .filter((el) => el.terms === 2);
+
 //BONUS write a script to check if LBJ was a 2 term president. IF he was then alert("LBJ served two terms") else alert "LBJ was one and done"
+if(twoTermDems.some(president => president.name === "Lyndon Johnson")){
+  alert("LBJ served two terms");
+} else{
+  alert("LBJ was one and done");
+}
